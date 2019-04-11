@@ -1,0 +1,11 @@
+.AppContainer {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+    height: 1500px;;
+    background: rgb(255,222,170);
+    background: linear-gradient(0deg, rgba(255,222,170,1) 0%, rgba(255,155,50,1) 100%);
+}
+  

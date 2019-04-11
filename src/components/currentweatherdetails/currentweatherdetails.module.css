@@ -1,0 +1,9 @@
+.currentweatherdetails{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 90%;
+    padding: 16px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.2);
+}
