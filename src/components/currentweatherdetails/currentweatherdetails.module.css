@@ -1,9 +1,26 @@
+.body{
+    width: 90%;
+}
 .currentweatherdetails{
     display: flex;
     flex-flow: column;
-    justify-content: center;
-    width: 90%;
-    padding: 16px;
+    padding: 8px 12px;
     border-radius: 2px;
-    background: rgba(255, 255, 255, 0.2);
+    margin: 8px 0px;
+    color:  rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+}
+.lines{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 1px;
+}
+.topic{
+    font-size: 16px;
+    font-weight: bold;
+}
+.text{
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 0px;
 }

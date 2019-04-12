@@ -1,5 +1,5 @@
 .AppContainer {
-    text-align: center;
+    padding-top: 8px;
     display: flex;
     flex-flow: column;
     align-items: center;

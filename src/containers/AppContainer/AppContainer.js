@@ -62,10 +62,10 @@ class AppContainer extends Component {
     render() {
     return (
       <div className={ClassNames.AppContainer}>
-        header
+
         <TemperatureModal weatherData={this.state.weatherData}/>
-        <CurrentWeatherDetails CurrentweatherData={this.state.weatherData.main}/>
-        footer
+        <CurrentWeatherDetails CurrentweatherData={this.state.weatherData}/>
+
       </div>
     );
   }
