@@ -7,8 +7,8 @@ class CurrentWeatherDetails extends Component {
     return (
       <div className={ClassNames.currentweatherdetails}>
 
-      <div>{this.props.CurrentweatherData.humidity} %</div>
-      <div>{this.props.CurrentweatherData.pressure}  hPa</div>
+      <div>Humidity: {this.props.CurrentweatherData.humidity} %</div>
+      <div>Pressure: {this.props.CurrentweatherData.pressure}  hPa</div>
       <div>{this.props.CurrentweatherData.temp_max} </div>
       <div>{this.props.CurrentweatherData.temp_min} </div>
       {}

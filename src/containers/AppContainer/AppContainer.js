@@ -32,6 +32,7 @@ class AppContainer extends Component {
     getlocation=()=>{
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
+                console.log(position.coords.latitude)
                 this.setState({ latitude: position.coords.latitude }, () => {
                     this.setState({ longitude: position.coords.longitude }, () => {
                         this.getWeather();
@@ -43,7 +44,7 @@ class AppContainer extends Component {
 
     getWeather = () => {
         axios
-            .get(`http://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
+            .get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
             .then(response => {
                 const weatherData = response.data;
                 console.log(weatherData);
