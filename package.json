@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "country-list": "^2.1.0",
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-animated-weather": "^2.0.0",

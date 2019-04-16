@@ -29,14 +29,12 @@ class AppContainer extends Component {
         this.getlocation();
     }
 
-    getlocation=()=>{
+    getlocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 console.log(position.coords.latitude)
-                this.setState({ latitude: position.coords.latitude }, () => {
-                    this.setState({ longitude: position.coords.longitude }, () => {
-                        this.getWeather();
-                    });
+                this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude }, () => {
+                    this.getWeather();
                 })
             });
         }
@@ -60,15 +58,15 @@ class AppContainer extends Component {
 
 
     render() {
-    return (
-      <div className={ClassNames.AppContainer}>
+        return (
+            <div className={ClassNames.AppContainer}>
 
-        <TemperatureModal weatherData={this.state.weatherData}/>
-        <CurrentWeatherDetails CurrentweatherData={this.state.weatherData}/>
+                <TemperatureModal weatherData={this.state.weatherData} />
+                <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
 
-      </div>
-    );
-  }
+            </div>
+        );
+    }
 }
 
 export default AppContainer;

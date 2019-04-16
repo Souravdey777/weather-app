@@ -16,15 +16,29 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .temp{
+    display: flex;
+    flex-flow: row;
     font-weight: bold;
     font-size: 24px;
+    transition-duration: 0.4s;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.maxmixtemp{
+    display: flex;
+    flex-flow: column;
+    padding-left: 10px;
+    justify-content: space-between;
+    font-size: 11px;
+    transition-duration: 0.4s;
+}
+.maxmixtemp div{
+    display: flex;
+    flex-flow: row;
+}
 .city{
-    font-size: 16px;
+    font-size: 14px;
 }
 .description{
     font-size: 14px;
-    transform: translateX(0%);
-    transition-duration: 0.2s;
+    transition-duration: 0.4s;
 }

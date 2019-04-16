@@ -4,11 +4,11 @@
 .currentweatherdetails{
     display: flex;
     flex-flow: column;
-    padding: 8px 12px;
+    padding: 8px;
     border-radius: 2px;
     margin: 8px 0px;
     color:  rgba(255, 255, 255, 0.5);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
 }
 .lines{
     background-color: rgba(255, 255, 255, 0.5);
@@ -16,11 +16,18 @@
     height: 1px;
 }
 .topic{
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
 }
 .text{
     text-align: center;
+    font-size: 13px;
+    padding: 10px 0px;
+}
+.twotext{
+    text-align: center;
     font-size: 14px;
     padding: 10px 0px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
 }
