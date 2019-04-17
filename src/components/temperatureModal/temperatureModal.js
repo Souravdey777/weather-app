@@ -21,7 +21,7 @@ class TemperatureModal extends Component {
     handleScroll = () => {
         lastScrollY = window.scrollY;
 
-        if (lastScrollY > 30) {
+        if (lastScrollY > window.innerWidth*0.1) {
             this.tempModal.current.style.width = "100px";
             this.tempModal.current.style.height = "100px";
             this.description.current.style.opacity = "0";
@@ -57,7 +57,6 @@ class TemperatureModal extends Component {
                                 return (content.description.charAt(0).toUpperCase() + content.description.slice(1))
                             })}
                         </div>
-
                         <div className={ClassNames.temp}>
                             {(this.props.weatherData.main.temp - 273.15).toFixed(2)}°C
                             <div ref={this.maxmixtemp} className={ClassNames.maxmixtemp} >
@@ -65,12 +64,10 @@ class TemperatureModal extends Component {
                                 <div>↓{(this.props.weatherData.main.temp_min - 273.15).toFixed(2)}°C</div>
                             </div>
                         </div>
-
                         <div className={ClassNames.city}>
                             {this.props.weatherData.name}, {
-                               getName(`${this.props.weatherData.sys.country}`)}
+                                getName(`${this.props.weatherData.sys.country}`)}
                         </div>
-
                     </div>) : null
                 }
             </div>

@@ -10,6 +10,7 @@
     "react": "^16.8.6",
     "react-animated-weather": "^2.0.0",
     "react-dom": "^16.8.6",
+    "react-icons-weather": "^1.0.5",
     "react-scripts": "2.1.8"
   },
   "scripts": {

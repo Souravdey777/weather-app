@@ -15,7 +15,7 @@ getdatetime(UNIX_timestamp){
   var datetime = date + ' ' + month + ' ' + year + ' ' + hour.substr(-2)  + ':' + min.substr(-2)  + ':' + sec.substr(-2)  ;
 return datetime;
 }
-getdate(UNIX_timestamp){
+gettime(UNIX_timestamp){
   var AmorPm ="am"
   var a = new Date(UNIX_timestamp * 1000);
   var hour = "0" + a.getHours();
@@ -76,13 +76,13 @@ return datetime;
 
         <div className={ClassNames.currentweatherdetails}>
           <div className={ClassNames.twotext}>
-            <div>Sunrise: {this.getdate(this.props.CurrentweatherData.sys.sunrise)}</div>
-            <div>Sunset: {this.getdate(this.props.CurrentweatherData.sys.sunset)}</div>
+            <div>Sunrise: {this.gettime(this.props.CurrentweatherData.sys.sunrise)}</div>
+            <div>Sunset: {this.gettime(this.props.CurrentweatherData.sys.sunset)}</div>
           </div>
         </div>
 
         
-        last update {this.getdatetime(this.props.CurrentweatherData.dt)}
+        {/* last update {this.getdatetime(this.props.CurrentweatherData.dt)} */}
       </div >
     );
   }
