@@ -3,6 +3,7 @@ import ClassNames from './AppContainer.module.css';
 import TemperatureModal from '../../components/temperatureModal/temperatureModal';
 import axios from 'axios';
 import CurrentWeatherDetails from '../../components/currentweatherdetails/currentweatherdetails';
+import HourlyWeatherDetails from '../../components/hourlyweatherdetails/hourlyweatherdetails';
 class AppContainer extends Component {
     state = {
         latitude: null,
@@ -23,6 +24,8 @@ class AppContainer extends Component {
             length: null,
             wind: {}
         },
+        hourlyData: [],
+        dailyData: [],
     }
 
     componentDidMount() {
@@ -41,18 +44,45 @@ class AppContainer extends Component {
     }
 
     getWeather = () => {
+
+        //Current forcast
         axios
             .get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
             .then(response => {
                 const weatherData = response.data;
                 console.log(weatherData);
                 this.setState({ weatherData: weatherData }, () => {
-                    console.log(this.state.weatherData)
                 });
             })
             .catch(error => {
                 console.log(error);
                 this.setState({ error: error });
+            });
+        //Hourly forcast
+        axios
+            .get(`https://api.openweathermap.org/data/2.5/forecast/hourly?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
+            .then(response => {
+                const hourlyData = response.data.list;
+                console.log(hourlyData);
+                this.setState({ hourlyData: hourlyData }, () => {
+                });
+            })
+            .catch(error1 => {
+                console.log(error1);
+                this.setState({ error: error1 });
+            });
+        //Daily forcast
+        axios
+            .get(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${this.state.latitude}&lon=${this.state.longitude}&cnt=10&APPID=${this.state.API_KEY}`)
+            .then(response => {
+                const dailyData = response.data.list;
+                console.log(dailyData);
+                this.setState({ dailyData: dailyData }, () => {
+                });
+            })
+            .catch(error1 => {
+                console.log(error1);
+                this.setState({ error: error1 });
             });
     }
 
@@ -60,10 +90,9 @@ class AppContainer extends Component {
     render() {
         return (
             <div className={ClassNames.AppContainer}>
-
                 <TemperatureModal weatherData={this.state.weatherData} />
                 <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
-
+                <HourlyWeatherDetails HourlyWeatherData={this.state.hourlyData} />
             </div>
         );
     }

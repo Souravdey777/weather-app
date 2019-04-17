@@ -20,7 +20,7 @@
     flex-flow: row;
     font-weight: bold;
     font-size: 24px;
-    transition-duration: 0.4s;
+    transition-duration: 0.5s;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .maxmixtemp{
@@ -29,7 +29,7 @@
     padding-left: 10px;
     justify-content: space-between;
     font-size: 11px;
-    transition-duration: 0.4s;
+    transition-duration: 0.5s;
 }
 .maxmixtemp div{
     display: flex;
@@ -40,5 +40,5 @@
 }
 .description{
     font-size: 14px;
-    transition-duration: 0.4s;
+    transition-duration: 0.5s;
 }

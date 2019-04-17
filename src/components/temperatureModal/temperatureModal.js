@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ClassNames from './temperatureModal.module.css';
 import ReactAnimatedWeather from 'react-animated-weather';
-import { getName } from 'country-list';
 let lastScrollY = 0;
 
 class TemperatureModal extends Component {
