@@ -73,7 +73,7 @@ class AppContainer extends Component {
             });
         //Daily forcast
         axios
-            .get(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${this.state.latitude}&lon=${this.state.longitude}&cnt=10&APPID=${this.state.API_KEY}`)
+            .get(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${this.state.latitude}&lon=${this.state.longitude}&cnt=5&APPID=${this.state.API_KEY}`)
             .then(response => {
                 const dailyData = response.data.list;
                 console.log(dailyData);

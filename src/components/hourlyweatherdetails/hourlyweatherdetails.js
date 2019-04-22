@@ -23,6 +23,14 @@ class HourlyWeatherDetails extends Component {
         return datetime;
     }
 
+    getday(UNIX_timestamp) {
+        var day = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday', 'Sunday'];
+        var a = new Date(UNIX_timestamp * 1000)
+        var dayOfWeek = require('day-of-week').get
+
+        var b = day[dayOfWeek(new Date(a.getFullYear(), a.getMonth(), a.getDate()), 'America/Los_Angeles')]
+        return b;
+    }
 
     showExtraDetails = (extra) => {
         if (extra === this.state.ExtraDetails) {
@@ -32,6 +40,7 @@ class HourlyWeatherDetails extends Component {
             this.setState({ clicked: true })
         }
         this.setState({ ExtraDetails: extra })
+        //console.log(a.getFullYear()+"/"+a.getMonth()+"/"+a.getDate())
     }
 
     render() {
@@ -41,10 +50,21 @@ class HourlyWeatherDetails extends Component {
                 <div className={ClassNames.topic}>Hourly Forcast</div>
                 <div className={ClassNames.lines} />
                 <div className={ClassNames.section}>
-                    {this.props.HourlyWeatherData.slice(0, 30).map(content => (
-                        <div className={ClassNames.eachSection} onClick={() => this.showExtraDetails(content)} key={content.dt}>
-                            {(content.main.temp - 273.15).toFixed(2)}°C<br />
-                            {this.gettime(content.dt)}
+                    {this.props.HourlyWeatherData.slice(0, 96).map(content => (
+                        <div
+                            className={this.state.clicked && this.state.ExtraDetails === content ? ClassNames.eachSectionclicked : ClassNames.eachSection}
+                            onClick={() => this.showExtraDetails(content)}
+                            key={content.dt}>
+                            <WeatherIcon
+                                name="owm"
+                                className={ClassNames.smallicon}
+                                iconId={String(content.weather.map(value => value.id))}
+                                flip="horizontal"
+                                rotate="90" />
+                            <br />
+                            <div>{(content.main.temp - 273.15).toFixed(2)}°C</div>
+                            <div>{this.gettime(content.dt)}</div>
+                            {/* <div>{this.getday(content.dt)}</div> */}
                         </div>
                     ))}
                 </div>
@@ -52,7 +72,12 @@ class HourlyWeatherDetails extends Component {
                     this.state.clicked ? (
                         <div className={ClassNames.ExtraDetails}>
                             <div className={ClassNames.iconsection}>
-                                <WeatherIcon className={ClassNames.icon} name="owm" iconId={String(this.state.ExtraDetails.weather.map(value => value.id))}fixedWidth="false" flip="horizontal" rotate="90" />
+                                <WeatherIcon className={ClassNames.icon} name="owm" iconId={String(this.state.ExtraDetails.weather.map(value => value.id))} flip="horizontal" rotate="90" />
+                                
+                                <div>{this.state.ExtraDetails.weather.map(content => {
+                                    return (content.description.charAt(0).toUpperCase() + content.description.slice(1))
+                                })}
+                                </div>
                             </div>
 
                             <div className={ClassNames.text}>
@@ -74,11 +99,11 @@ class HourlyWeatherDetails extends Component {
                             </div>
 
 
-                            
+
                         </div>
-                        
+
                     ) : null
-                    
+
                 }
                 <div className={ClassNames.lines} />
             </div >

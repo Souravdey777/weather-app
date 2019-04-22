@@ -42,13 +42,13 @@ class TemperatureModal extends Component {
             <div>
                 {this.props.weatherData ? (
                     <div ref={this.tempModal} className={ClassNames.tempModal} style={{
-                        color: "rgba(74,140,255,1)"
+                        color: "rgb(74,140,255)"
                         // color: "rgb(198, 102, 0)"
                     }}>
                         <div ref={this.description} className={ClassNames.description}>
                             <ReactAnimatedWeather
                                 icon="CLEAR_DAY"
-                                color="rgba(74,140,255,1)"
+                                color="rgb(74,140,255)"
                                 size={108}
                                 animate={true}
                             />
