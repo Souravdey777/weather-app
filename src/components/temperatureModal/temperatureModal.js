@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ClassNames from './temperatureModal.module.css';
 import ReactAnimatedWeather from 'react-animated-weather';
-import ReactLoading from "react-loading";
 
 let lastScrollY = 0;
 
@@ -23,7 +22,7 @@ class TemperatureModal extends Component {
     handleScroll = () => {
         lastScrollY = window.scrollY;
 
-        if (lastScrollY > window.innerWidth*0.1) {
+        if (lastScrollY > 50) {
             this.tempModal.current.style.width = "100px";
             this.tempModal.current.style.height = "100px";
             this.description.current.style.opacity = "0";
@@ -40,8 +39,7 @@ class TemperatureModal extends Component {
 
     render() {
 
-        let loader =<ReactLoading type="spinningBubbles"color="#fff" />
-        
+
         const { getName } = require('country-list');
         return (
             <div>

@@ -39,11 +39,13 @@ class AppContainer extends Component {
         this.getlocation();
     }
 
+    
 
     getlocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 console.log(position.coords.latitude)
+                console.log(position.coords.longitude)
                 this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude }, () => {
                     this.getWeather();
                 })

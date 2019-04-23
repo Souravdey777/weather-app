@@ -24,7 +24,7 @@ class HourlyWeatherDetails extends Component {
     }
 
     getday(UNIX_timestamp) {
-        var day = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday', 'Sunday'];
+        var day = ['Mon', 'Tue', 'Wed', 'Thru', 'Fri', 'Sat', 'Sun'];
         var a = new Date(UNIX_timestamp * 1000)
         var dayOfWeek = require('day-of-week').get
 
@@ -64,7 +64,7 @@ class HourlyWeatherDetails extends Component {
                             <br />
                             <div>{(content.main.temp - 273.15).toFixed(2)}°C</div>
                             <div>{this.gettime(content.dt)}</div>
-                            {/* <div>{this.getday(content.dt)}</div> */}
+                            <div>{this.getday(content.dt)}</div>
                         </div>
                     ))}
                 </div>
@@ -81,14 +81,15 @@ class HourlyWeatherDetails extends Component {
                             </div>
 
                             <div className={ClassNames.text}>
+                                
                                 <div>
                                     Temp: {(this.state.ExtraDetails.main.temp - 273.15).toFixed(2)}°C
                                 </div>
                                 <div>
-                                    Max Temp: {(this.state.ExtraDetails.main.temp_max - 273.15).toFixed(2)}°C
+                                    Max Temp: ↑{(this.state.ExtraDetails.main.temp_max - 273.15).toFixed(2)}°C
                                 </div>
                                 <div>
-                                    Min Temp: {(this.state.ExtraDetails.main.temp_min - 273.15).toFixed(2)}°C
+                                    Min Temp: ↓{(this.state.ExtraDetails.main.temp_min - 273.15).toFixed(2)}°C
                                 </div>
                                 <div>
                                     Pressure: {this.state.ExtraDetails.main.pressure} hPa
