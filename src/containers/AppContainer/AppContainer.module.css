@@ -4,7 +4,6 @@
     flex-flow: column;
     align-items: center;
     width: 100%;
-    height: 1200px;;
     background: rgb(180,207,255);
     background: linear-gradient(0deg, rgba(180,207,255,1) 0%, rgba(74,140,255,1) 100%);
     /* background: rgb(255,222,170);

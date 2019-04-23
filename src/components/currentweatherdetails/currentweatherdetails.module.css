@@ -5,10 +5,11 @@
     display: flex;
     flex-flow: column;
     padding: 8px;
-    border-radius: 2px;
-    margin: 8px 0px;
+    border-radius: 4px;
+    margin: 12px 0px;
     color:  rgba(255, 255, 255, 0.7);
     background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
 }
 .lines{
     background-color: rgba(255, 255, 255, 0.7);
@@ -21,13 +22,14 @@
 .text{
     text-align: center;
     font-size: 13px;
-    padding: 10px 0px;
+    padding: 20px 0px;
 }
 .twotext{
     text-align: center;
     font-size: 14px;
-    padding: 10px 0px;
+    padding: 20px 0px;
     display: flex;
     flex-flow: row;
+    align-items: center;
     justify-content: space-around;
 }

@@ -4,8 +4,10 @@ import TemperatureModal from '../../components/temperatureModal/temperatureModal
 import axios from 'axios';
 import CurrentWeatherDetails from '../../components/currentweatherdetails/currentweatherdetails';
 import HourlyWeatherDetails from '../../components/hourlyweatherdetails/hourlyweatherdetails';
+import Footer from '../../components/footer/footer';
 class AppContainer extends Component {
     state = {
+        datetime:null,
         latitude: null,
         longitude: null,
         API_KEY: `9ed5e07cc11f0ef0a18b03f79dde4029`,
@@ -30,7 +32,13 @@ class AppContainer extends Component {
 
     componentDidMount() {
         this.getlocation();
+        
     }
+
+    updateButtonClicked=()=>{
+        this.getlocation();
+    }
+
 
     getlocation = () => {
         if (navigator.geolocation) {
@@ -41,10 +49,12 @@ class AppContainer extends Component {
                 })
             });
         }
+        var today = new Date();
+        var date = today.getDate()+'/'+(today.getMonth()+1)+" "+("0" + today.getHours()).substr(-2)  + ':' + ("0" + today.getMinutes()).substr(-2);
+        this.setState({datetime:date});
     }
 
     getWeather = () => {
-
         //Current forcast
         axios
             .get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
@@ -67,9 +77,9 @@ class AppContainer extends Component {
                 this.setState({ hourlyData: hourlyData }, () => {
                 });
             })
-            .catch(error1 => {
-                console.log(error1);
-                this.setState({ error: error1 });
+            .catch(error => {
+                console.log(error);
+                this.setState({ error: error });
             });
         //Daily forcast
         axios
@@ -80,19 +90,20 @@ class AppContainer extends Component {
                 this.setState({ dailyData: dailyData }, () => {
                 });
             })
-            .catch(error1 => {
-                console.log(error1);
-                this.setState({ error: error1 });
+            .catch(error => {
+                console.log(error);
+                this.setState({ error: error });
             });
     }
 
-
+    
     render() {
         return (
             <div className={ClassNames.AppContainer}>
                 <TemperatureModal weatherData={this.state.weatherData} />
                 <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
                 <HourlyWeatherDetails HourlyWeatherData={this.state.hourlyData} />
+                <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked}/>
             </div>
         );
     }

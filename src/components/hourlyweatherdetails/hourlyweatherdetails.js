@@ -73,7 +73,7 @@ class HourlyWeatherDetails extends Component {
                         <div className={ClassNames.ExtraDetails}>
                             <div className={ClassNames.iconsection}>
                                 <WeatherIcon className={ClassNames.icon} name="owm" iconId={String(this.state.ExtraDetails.weather.map(value => value.id))} flip="horizontal" rotate="90" />
-                                
+
                                 <div>{this.state.ExtraDetails.weather.map(content => {
                                     return (content.description.charAt(0).toUpperCase() + content.description.slice(1))
                                 })}
@@ -97,9 +97,6 @@ class HourlyWeatherDetails extends Component {
                                     Humidity: {this.state.ExtraDetails.main.humidity} %
                                 </div>
                             </div>
-
-
-
                         </div>
 
                     ) : null

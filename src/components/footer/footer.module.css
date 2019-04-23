@@ -1,0 +1,16 @@
+.footer{
+    width: 100%;
+}
+
+.footercontent{
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    padding: 8px 30px;
+    margin: 8px 0px;
+    margin-top: 80px;
+    font-size: 14px;
+    color:  rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+}

@@ -3,35 +3,44 @@ import ClassNames from './currentweatherdetails.module.css';
 
 class CurrentWeatherDetails extends Component {
 
-getdatetime(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp * 1000);
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var hour = "0" + a.getHours();
-  var min = "0" + a.getMinutes();
-  var sec = "0" + a.getSeconds();
-  var datetime = date + ' ' + month + ' ' + year + ' ' + hour.substr(-2)  + ':' + min.substr(-2)  + ':' + sec.substr(-2)  ;
-return datetime;
-}
-gettime(UNIX_timestamp){
-  var AmorPm ="am"
-  var a = new Date(UNIX_timestamp * 1000);
-  var hour = "0" + a.getHours();
-  var min = "0" + a.getMinutes();
-  if(hour >12){
-    hour=  "0" + (hour-12)
-    AmorPm = "pm";
+  getdatetime(UNIX_timestamp) {
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = "0" + a.getHours();
+    var min = "0" + a.getMinutes();
+    var sec = "0" + a.getSeconds();
+    var datetime = date + ' ' + month + ' ' + year + ' ' + hour.substr(-2) + ':' + min.substr(-2) + ':' + sec.substr(-2);
+    return datetime;
   }
-  var datetime = hour.substr(-2)  + ':' + min.substr(-2) + AmorPm ;
-return datetime;
-}
+  gettime(UNIX_timestamp) {
+    var AmorPm = "am"
+    var a = new Date(UNIX_timestamp * 1000);
+    var hour = "0" + a.getHours();
+    var min = "0" + a.getMinutes();
+    if (hour > 12) {
+      hour = "0" + (hour - 12)
+      AmorPm = "pm";
+    }
+    var datetime = hour.substr(-2) + ':' + min.substr(-2) + AmorPm;
+    return datetime;
+  }
 
   render() {
     return (
       <div className={ClassNames.body}>
 
+        <div className={ClassNames.currentweatherdetails}>
+          <div className={ClassNames.topic}>Temperature</div>
+          <div className={ClassNames.lines} />
+          <div className={ClassNames.twotext}>
+            <div>↓{(this.props.CurrentweatherData.main.temp_min - 273.15).toFixed(2)}°C</div>
+            <div style={{fontSize:"22px"}}>{(this.props.CurrentweatherData.main.temp - 273.15).toFixed(2)}°C</div>
+            <div>↑{(this.props.CurrentweatherData.main.temp_max - 273.15).toFixed(2)}°C</div>
+          </div>
+        </div>
         <div className={ClassNames.currentweatherdetails}>
           <div className={ClassNames.topic}>Humidity</div>
           <div className={ClassNames.lines} />
@@ -52,16 +61,7 @@ return datetime;
           <div className={ClassNames.topic}>Cloudiness</div>
           <div className={ClassNames.lines} />
           <div className={ClassNames.text}>
-          {this.props.CurrentweatherData.clouds.all}%
-          </div>
-        </div>
-
-        <div className={ClassNames.currentweatherdetails}>
-          <div className={ClassNames.topic}>Temperature</div>
-          <div className={ClassNames.lines} />
-          <div className={ClassNames.twotext}>
-          <div>Min: ↓{(this.props.CurrentweatherData.main.temp_min - 273.15).toFixed(2)}°C</div>
-          <div>Max: ↑{(this.props.CurrentweatherData.main.temp_max - 273.15).toFixed(2)}°C</div>
+            {this.props.CurrentweatherData.clouds.all}%
           </div>
         </div>
 
@@ -81,7 +81,7 @@ return datetime;
           </div>
         </div>
 
-        
+
         {/* last update {this.getdatetime(this.props.CurrentweatherData.dt)} */}
       </div >
     );

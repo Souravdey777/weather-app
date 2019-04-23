@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ClassNames from './temperatureModal.module.css';
 import ReactAnimatedWeather from 'react-animated-weather';
+import ReactLoading from "react-loading";
+
 let lastScrollY = 0;
 
 class TemperatureModal extends Component {
@@ -37,12 +39,15 @@ class TemperatureModal extends Component {
 
 
     render() {
+
+        let loader =<ReactLoading type="spinningBubbles"color="#fff" />
+        
         const { getName } = require('country-list');
         return (
             <div>
-                {this.props.weatherData ? (
+                {this.props.weatherData? (
                     <div ref={this.tempModal} className={ClassNames.tempModal} style={{
-                        color: "rgb(74,140,255)"
+                        color: "rgba(74,140,255)"
                         // color: "rgb(198, 102, 0)"
                     }}>
                         <div ref={this.description} className={ClassNames.description}>
