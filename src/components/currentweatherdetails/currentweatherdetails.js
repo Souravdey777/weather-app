@@ -30,6 +30,7 @@ class CurrentWeatherDetails extends Component {
 
   render() {
     return (
+     
       <div className={ClassNames.body}>
 
         <div className={ClassNames.currentweatherdetails}>

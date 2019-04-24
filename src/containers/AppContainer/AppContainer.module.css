@@ -5,8 +5,6 @@
     flex-flow: column;
     align-items: center;
     width: 100%;
-    background: rgb(122, 170, 254);
-    background: linear-gradient(0deg, rgb(122, 170, 254) 0%, rgb(0, 92, 250) 100%);
     /* background: rgb(255,222,170);
     background: linear-gradient(0deg, rgba(255,222,170,1) 0%, rgba(255,155,50,1) 100%); */
 }

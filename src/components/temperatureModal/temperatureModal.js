@@ -55,7 +55,6 @@ class TemperatureModal extends Component {
                                 size={108}
                                 animate={true}
                             />
-                            <br />
                             {this.props.weatherData.weather.map(content => {
                                 return (content.description.charAt(0).toUpperCase() + content.description.slice(1))
                             })}

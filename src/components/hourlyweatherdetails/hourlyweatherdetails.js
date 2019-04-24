@@ -10,6 +10,7 @@ class HourlyWeatherDetails extends Component {
         clicked: false,
     }
 
+
     gettime(UNIX_timestamp) {
         var AmorPm = "am"
         var a = new Date(UNIX_timestamp * 1000);
@@ -27,7 +28,6 @@ class HourlyWeatherDetails extends Component {
         var day = ['Mon', 'Tue', 'Wed', 'Thru', 'Fri', 'Sat', 'Sun'];
         var a = new Date(UNIX_timestamp * 1000)
         var dayOfWeek = require('day-of-week').get
-
         var b = day[dayOfWeek(new Date(a.getFullYear(), a.getMonth(), a.getDate()), 'America/Los_Angeles')]
         return b;
     }
@@ -42,7 +42,10 @@ class HourlyWeatherDetails extends Component {
         this.setState({ ExtraDetails: extra })
         //console.log(a.getFullYear()+"/"+a.getMonth()+"/"+a.getDate())
     }
-
+    clickedtofalse=()=>{
+        this.setState({clicked:false},()=>{
+            console.log(this.state.clicked)})
+    }
     render() {
 
         return (
@@ -50,7 +53,7 @@ class HourlyWeatherDetails extends Component {
                 <div className={ClassNames.topic}>Hourly Forcast</div>
                 <div className={ClassNames.lines} />
                 <div className={ClassNames.section}>
-                    {this.props.HourlyWeatherData.slice(0, 96).map(content => (
+                    {this.props.HourlyWeatherData.slice(0, 20).map(content => (
                         <div
                             className={this.state.clicked && this.state.ExtraDetails === content ? ClassNames.eachSectionclicked : ClassNames.eachSection}
                             onClick={() => this.showExtraDetails(content)}
@@ -69,7 +72,7 @@ class HourlyWeatherDetails extends Component {
                     ))}
                 </div>
                 {
-                    this.state.clicked ? (
+                    this.state.clicked? (
                         <div className={ClassNames.ExtraDetails}>
                             <div className={ClassNames.iconsection}>
                                 <WeatherIcon className={ClassNames.icon} name="owm" iconId={String(this.state.ExtraDetails.weather.map(value => value.id))} flip="horizontal" rotate="90" />
@@ -101,7 +104,6 @@ class HourlyWeatherDetails extends Component {
                         </div>
 
                     ) : null
-
                 }
                 <div className={ClassNames.lines} />
             </div >
