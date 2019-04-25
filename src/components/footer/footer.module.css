@@ -37,4 +37,5 @@
     display: flex;
     flex-flow: row;
     align-items: center;
+    font-size: 13.8px;
 }
