@@ -38,7 +38,9 @@ class CurrentWeatherDetails extends Component {
           <div className={ClassNames.lines} />
           <div className={ClassNames.twotext}>
             <div>↓{(this.props.CurrentweatherData.main.temp_min - 273.15).toFixed(2)}°C</div>
+            |
             <div style={{fontSize:"22px"}}>{(this.props.CurrentweatherData.main.temp - 273.15).toFixed(2)}°C</div>
+            |
             <div>↑{(this.props.CurrentweatherData.main.temp_max - 273.15).toFixed(2)}°C</div>
           </div>
         </div>
