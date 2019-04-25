@@ -64,7 +64,7 @@ class CurrentWeatherDetails extends Component {
           <div className={ClassNames.topic}>Cloudiness</div>
           <div className={ClassNames.lines} />
           <div className={ClassNames.text}>
-          &#9729; {this.props.CurrentweatherData.clouds.all}%
+           {this.props.CurrentweatherData.clouds.all}%
           </div>
         </div>
 
@@ -79,8 +79,8 @@ class CurrentWeatherDetails extends Component {
 
         <div className={ClassNames.currentweatherdetails}>
           <div className={ClassNames.twotext}>
-            <div>☼↑ Sunrise: {this.gettime(this.props.CurrentweatherData.sys.sunrise)}</div>
-            <div>☼↓ Sunset: {this.gettime(this.props.CurrentweatherData.sys.sunset)}</div>
+            <div>↑Sunrise: {this.gettime(this.props.CurrentweatherData.sys.sunrise)}</div>
+            <div>↓Sunset: {this.gettime(this.props.CurrentweatherData.sys.sunset)}</div>
           </div>
         </div>
 
