@@ -4,7 +4,7 @@ import ReactAnimatedWeather from 'react-animated-weather';
 
 
 let lastScrollY = 0;
-
+let windowWidth = 0;
 class TemperatureModal extends Component {
 
     componentWillMount() {
@@ -35,9 +35,6 @@ class TemperatureModal extends Component {
             this.maxmixtemp.current.style.opacity = "1";
         }
     };
-
-    
-
 
     render() {
         const { getName } = require('country-list');

@@ -184,7 +184,8 @@ class AppContainer extends Component {
                     iconstring=weatherIconManager.Icon+(!this.state.night?"_DAY":"_NIGHT")
                 }
                 else if(weatherIconManager.Main==="Clouds"){
-                    if(this.state.weatherData.weather.map(content => content.description)[0]==="broken clouds"&&
+                    //console.log(this.state.weatherData.weather.map(content => content.description)[0]);
+                    if(this.state.weatherData.weather.map(content => content.description)[0]==="broken clouds"||
                     this.state.weatherData.weather.map(content => content.description)[0]==="overcast clouds"){
                         iconstring="CLOUDY"
                     }
@@ -197,12 +198,13 @@ class AppContainer extends Component {
                 else{
                     iconstring=weatherIconManager.Icon
                 }
+                
                 backgroundstring=weatherIconManager.backgroundcolor
             }
-            
+            return 0;
         })
-        console.log(backgroundstring)
-        console.log(iconstring)
+        // console.log(backgroundstring)
+        // console.log(iconstring)
         this.setState({iconString:iconstring,backgroundString:backgroundstring})
         
     }
@@ -220,7 +222,11 @@ class AppContainer extends Component {
             }}
                 >
                 {this.state.weatherData.length===null?null:
-                <TemperatureModal backgroundcolor={this.state.night ?"rgb(1, 41, 109)":this.state.backgroundString.background} iconString={this.state.iconString} weatherData={this.state.weatherData} night={this.state.night}/>}
+                <TemperatureModal 
+                backgroundcolor={this.state.night ?"rgb(1, 41, 109)":this.state.backgroundString.background} 
+                iconString={this.state.iconString} 
+                weatherData={this.state.weatherData} 
+                night={this.state.night}/>}
                 <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
                 <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} />
                 <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked} show={this.state.alldatafetched} />
