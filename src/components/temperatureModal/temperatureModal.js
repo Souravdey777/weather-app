@@ -64,10 +64,11 @@ class TemperatureModal extends Component {
                                 <div>↓{(this.props.weatherData.main.temp_min - 273.15).toFixed(2)}°C</div>
                             </div>
                         </div>
+                        {this.props.weatherData.sys.country?
                         <div className={ClassNames.city}>
                             {this.props.weatherData.name}, {
                                 getName(`${this.props.weatherData.sys.country}`)}
-                        </div>
+                        </div>:null}
                     </div>) : null
                 }
             </div>
