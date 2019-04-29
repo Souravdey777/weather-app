@@ -5,6 +5,7 @@ import axios from 'axios';
 import CurrentWeatherDetails from '../../components/currentweatherdetails/currentweatherdetails';
 import HourlyWeatherDetails from '../../components/hourlyweatherdetails/hourlyweatherdetails';
 import Footer from '../../components/footer/footer';
+import Aux from '../hoc/Aux';
 class AppContainer extends Component {
     state = {
         datetime: null,
@@ -106,7 +107,8 @@ class AppContainer extends Component {
         iconString: "CLOUDY",
         backgroundString: {
             background: "rgb(0, 92, 250)",
-            backgroundgradient:"linear-gradient(0deg, rgb(122, 170, 254) 0%, rgb(0, 92, 250) 100%)"
+            backgroundgradient:"linear-gradient(0deg, rgb(122, 170, 254) 0%, rgb(0, 92, 250) 100%)",
+         
         }
     }
 
@@ -115,9 +117,9 @@ class AppContainer extends Component {
     }
 
     updateButtonClicked = () => {
-        this.setState({ alldatafetched: false, hourlyData: [] })
         this.getlocation();
         this.refs.HourlyWeatherDetails.clickedtofalse();
+        this.setState({alldatafetched:false})
     }
 
 
@@ -132,13 +134,23 @@ class AppContainer extends Component {
                 })
             });
         }
-        var today = new Date();
-        var date = today.getDate() + '/' + (today.getMonth() + 1) + " " + ("0" + today.getHours()).substr(-2) + ':' + ("0" + today.getMinutes()).substr(-2);
+        this.gettime();
+    }
+
+    gettime() {
+        var AmorPm = "am"
+        var a = new Date();
+        var hour = "0" + a.getHours();
+        var min = "0" + a.getMinutes();
+        if (hour > 12) {
+            hour = "0" + (hour - 12)
+            AmorPm = "pm";
+        }
+        var date = a.getDate() + '/' + (a.getMonth() + 1) + " " +hour.substr(-2) + ':' + min.substr(-2) + AmorPm;
         this.setState({ datetime: date });
     }
 
     getWeather = () => {
-
         axios.all([
             axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`),
             axios.get(`https://api.openweathermap.org/data/2.5/forecast/hourly?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
@@ -184,7 +196,7 @@ class AppContainer extends Component {
                     iconstring=weatherIconManager.Icon+(!this.state.night?"_DAY":"_NIGHT")
                 }
                 else if(weatherIconManager.Main==="Clouds"){
-                    //console.log(this.state.weatherData.weather.map(content => content.description)[0]);
+                    console.log(this.state.weatherData.weather.map(content => content.description)[0]);
                     if(this.state.weatherData.weather.map(content => content.description)[0]==="broken clouds"||
                     this.state.weatherData.weather.map(content => content.description)[0]==="overcast clouds"){
                         iconstring="CLOUDY"
@@ -212,6 +224,7 @@ class AppContainer extends Component {
 
     render() {
         return (
+            <Aux>{this.state.weatherData.length===null?<div className={ClassNames.Loading}><h1>Loading...</h1></div>:
             <div className={ClassNames.AppContainer} 
             style={this.state.night ? {
                 background: "rgb(1, 41, 109)",
@@ -221,16 +234,18 @@ class AppContainer extends Component {
                 background: `${this.state.backgroundString.backgroundgradient}`
             }}
                 >
-                {this.state.weatherData.length===null?null:
+                
                 <TemperatureModal 
                 backgroundcolor={this.state.night ?"rgb(1, 41, 109)":this.state.backgroundString.background} 
                 iconString={this.state.iconString} 
                 weatherData={this.state.weatherData} 
-                night={this.state.night}/>}
+                night={this.state.night}/>
                 <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
-                <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} />
+                <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} weatherDataSun={this.state.weatherData.sys} />
                 <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked} show={this.state.alldatafetched} />
             </div>
+            }
+            </Aux>
         );
     }
 }

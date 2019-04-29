@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ClassNames from './hourlyweatherdetails.module.css';
-import WeatherIcon from 'react-icons-weather';
+import OpenWeatherMapIcons from './OpenWeatherMapIcons/OpenWeatherMapIcons';
 
 
 class HourlyWeatherDetails extends Component {
@@ -42,9 +42,10 @@ class HourlyWeatherDetails extends Component {
         this.setState({ ExtraDetails: extra })
         //console.log(a.getFullYear()+"/"+a.getMonth()+"/"+a.getDate())
     }
-    clickedtofalse=()=>{
-        this.setState({clicked:false},()=>{
-            console.log(this.state.clicked)})
+    clickedtofalse = () => {
+        this.setState({ clicked: false }, () => {
+            console.log(this.state.clicked)
+        })
     }
     render() {
 
@@ -53,17 +54,16 @@ class HourlyWeatherDetails extends Component {
                 <div className={ClassNames.topic}>Hourly Forcast</div>
                 <div className={ClassNames.lines} />
                 <div className={ClassNames.section}>
-                    {this.props.HourlyWeatherData.slice(0, 20).map(content => (
+                    {this.props.HourlyWeatherData.slice(0, 30).map(content => (
                         <div
                             className={this.state.clicked && this.state.ExtraDetails === content ? ClassNames.eachSectionclicked : ClassNames.eachSection}
                             onClick={() => this.showExtraDetails(content)}
                             key={content.dt}>
-                            <WeatherIcon
-                                name="owm"
-                                className={ClassNames.smallicon}
-                                iconId={String(content.weather.map(value => value.id))}
-                                flip="horizontal"
-                                rotate="90" />
+                            <OpenWeatherMapIcons
+                                iconid={content.weather.map(value => value.id)}
+                                night={content.sys.pod === "n" ? true : false}
+                                size="25"
+                            />
                             <br />
                             <div>{(content.main.temp - 273.15).toFixed(2)}°C</div>
                             <div>{this.gettime(content.dt)}</div>
@@ -72,27 +72,29 @@ class HourlyWeatherDetails extends Component {
                     ))}
                 </div>
                 {
-                    this.state.clicked? (
+                    this.state.clicked ? (
                         <div className={ClassNames.ExtraDetails}>
                             <div className={ClassNames.iconsection}>
-                                <WeatherIcon className={ClassNames.icon} name="owm" iconId={String(this.state.ExtraDetails.weather.map(value => value.id))} flip="horizontal" rotate="90" />
-
-                                <div>{this.state.ExtraDetails.weather.map(content => {
+                                <OpenWeatherMapIcons
+                                    iconid={this.state.ExtraDetails.weather.map(value => value.id)}
+                                    night={this.state.ExtraDetails.sys.pod === "n" ? true : false}
+                                    size="50"
+                                />
+                                <br />
+                                <div><b>{this.state.ExtraDetails.weather.map(content => {
                                     return (content.description.charAt(0).toUpperCase() + content.description.slice(1))
-                                })}
+                                })}</b>
                                 </div>
                             </div>
 
                             <div className={ClassNames.text}>
-                                
-                                <div>
-                                    Temp: {(this.state.ExtraDetails.main.temp - 273.15).toFixed(2)}°C
-                                </div>
-                                <div>
-                                    Max Temp: ↑{(this.state.ExtraDetails.main.temp_max - 273.15).toFixed(2)}°C
-                                </div>
-                                <div>
-                                    Min Temp: ↓{(this.state.ExtraDetails.main.temp_min - 273.15).toFixed(2)}°C
+
+                                <div className={ClassNames.temp}>
+                                    {(this.state.ExtraDetails.main.temp - 273.15).toFixed(2)}°C
+                                    <div ref={this.maxmixtemp} className={ClassNames.maxmixtemp} >
+                                        <div>↑{(this.state.ExtraDetails.main.temp_max - 273.15).toFixed(2)}°C</div>
+                                        <div>↓{(this.state.ExtraDetails.main.temp_min - 273.15).toFixed(2)}°C</div>
+                                    </div>
                                 </div>
                                 <div>
                                     Pressure: {this.state.ExtraDetails.main.pressure} hPa

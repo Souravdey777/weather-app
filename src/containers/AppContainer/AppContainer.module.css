@@ -5,6 +5,14 @@
     flex-flow: column;
     align-items: center;
     width: 100%;
-     background: rgb(0, 50, 111);
-    background: linear-gradient(0deg, rgb(122, 183, 249) 0%,  rgb(0, 50, 111) 100%);
+}
+.Loading{
+    max-width: 768px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.4);
+    font: bolder;
+    font-size: 30px;
 }

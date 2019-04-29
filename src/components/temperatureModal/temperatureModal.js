@@ -4,7 +4,6 @@ import ReactAnimatedWeather from 'react-animated-weather';
 
 
 let lastScrollY = 0;
-let windowWidth = 0;
 class TemperatureModal extends Component {
 
     componentWillMount() {
