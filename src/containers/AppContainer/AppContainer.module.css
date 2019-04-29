@@ -8,11 +8,13 @@
 }
 .Loading{
     max-width: 768px;
+    padding: 100px 0px;
     width: 100%;
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
-    color: rgba(0, 0, 0, 0.4);
+    color: #999;
     font: bolder;
     font-size: 30px;
 }

@@ -6,6 +6,8 @@ import CurrentWeatherDetails from '../../components/currentweatherdetails/curren
 import HourlyWeatherDetails from '../../components/hourlyweatherdetails/hourlyweatherdetails';
 import Footer from '../../components/footer/footer';
 import Aux from '../hoc/Aux';
+import ReactAnimatedWeather from 'react-animated-weather';
+
 class AppContainer extends Component {
     state = {
         datetime: null,
@@ -22,7 +24,7 @@ class AppContainer extends Component {
             main: {},
             name: "",
             sys: {},
-            wind:{},
+            wind: {},
             visibility: null,
             weather: [],
             length: null,
@@ -32,83 +34,83 @@ class AppContainer extends Component {
         alldatafetched: false,
         weatherIconManager: [
             {
-                Main:"Thunderstorm",
-                Icon:"SLEET",
-                backgroundcolor:{
+                Main: "Thunderstorm",
+                Icon: "SLEET",
+                backgroundcolor: {
                     background: "rgb(33, 33, 33)",
-                    backgroundgradient:"linear-gradient(0deg, rgb(122, 183, 249) 0%,  rgb(33, 33, 33) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgb(122, 183, 249) 0%,  rgb(33, 33, 33) 100%)"
                 }
             },
             {
-                Main:"Drizzle",
-                Icon:"RAIN",
-                backgroundcolor:{
+                Main: "Drizzle",
+                Icon: "RAIN",
+                backgroundcolor: {
                     background: "rgb(0, 50, 111)",
-                    backgroundgradient:"linear-gradient(0deg, rgb(122, 183, 249) 0%,  rgb(0, 50, 111) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgb(122, 183, 249) 0%,  rgb(0, 50, 111) 100%)"
                 }
             },
             {
-                Main:"Rain",
-                Icon:"RAIN",
-                backgroundcolor:{
+                Main: "Rain",
+                Icon: "RAIN",
+                backgroundcolor: {
                     background: "rgb(0, 50, 111)",
-                    backgroundgradient:"linear-gradient(0deg, rgb(122, 183, 249) 0%,  rgb(0, 50, 111) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgb(122, 183, 249) 0%,  rgb(0, 50, 111) 100%)"
                 }
             },
             {
-                Main:"Snow",
-                Icon:"SNOW",
-                backgroundcolor:{
+                Main: "Snow",
+                Icon: "SNOW",
+                backgroundcolor: {
                     background: "rgb(123, 176, 255)",
-                    backgroundgradient:"linear-gradient(0deg, rgb(177, 205, 247) 0%, rgb(123, 176, 255) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgb(177, 205, 247) 0%, rgb(123, 176, 255) 100%)"
                 }
             },
             {
-                Main:"Fog",
-                Icon:"FOG",
-                backgroundcolor:{
+                Main: "Fog",
+                Icon: "FOG",
+                backgroundcolor: {
                     background: "rgb(69, 139, 245)",
-                    backgroundgradient:"linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)"
                 }
             },
             {
-                Main:"Mist",
-                Icon:"FOG",
-                backgroundcolor:{
+                Main: "Mist",
+                Icon: "FOG",
+                backgroundcolor: {
                     background: "rgb(69, 139, 245)",
-                    backgroundgradient:"linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)"
                 }
             },
             {
-                Main:"Haze",
-                Icon:"FOG",
-                backgroundcolor:{
+                Main: "Haze",
+                Icon: "FOG",
+                backgroundcolor: {
                     background: "rgb(69, 139, 245)",
-                    backgroundgradient:"linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)"
                 }
             },
             {
-                Main:"Clear",
-                Icon:"CLEAR",
-                backgroundcolor:{
+                Main: "Clear",
+                Icon: "CLEAR",
+                backgroundcolor: {
                     background: "rgb(50, 183, 255)",
-                    backgroundgradient:"linear-gradient(0deg, rgba(255,222,170,1) 0%, rgb(50, 183, 255) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgba(255,222,170,1) 0%, rgb(50, 183, 255) 100%)"
                 }
             },
             {
-                Main:"Clouds",
-                Icon:"PARTLY_CLOUDY",
-                backgroundcolor:{
+                Main: "Clouds",
+                Icon: "PARTLY_CLOUDY",
+                backgroundcolor: {
                     background: "rgb(50, 183, 255)",
-                    backgroundgradient:"linear-gradient(0deg, rgba(255,222,170,1) 0%, rgb(50, 183, 255) 100%)"
+                    backgroundgradient: "linear-gradient(0deg, rgba(255,222,170,1) 0%, rgb(50, 183, 255) 100%)"
                 }
             },
         ],
         iconString: "CLOUDY",
         backgroundString: {
             background: "rgb(0, 92, 250)",
-            backgroundgradient:"linear-gradient(0deg, rgb(122, 170, 254) 0%, rgb(0, 92, 250) 100%)",
-         
+            backgroundgradient: "linear-gradient(0deg, rgb(122, 170, 254) 0%, rgb(0, 92, 250) 100%)",
+
         }
     }
 
@@ -119,7 +121,7 @@ class AppContainer extends Component {
     updateButtonClicked = () => {
         this.getlocation();
         this.refs.HourlyWeatherDetails.clickedtofalse();
-        this.setState({alldatafetched:false})
+        this.setState({ alldatafetched: false })
     }
 
 
@@ -146,7 +148,7 @@ class AppContainer extends Component {
             hour = "0" + (hour - 12)
             AmorPm = "pm";
         }
-        var date = a.getDate() + '/' + (a.getMonth() + 1) + " " +hour.substr(-2) + ':' + min.substr(-2) + AmorPm;
+        var date = a.getDate() + '/' + (a.getMonth() + 1) + " " + hour.substr(-2) + ':' + min.substr(-2) + AmorPm;
         this.setState({ datetime: date });
     }
 
@@ -169,82 +171,92 @@ class AppContainer extends Component {
                 console.log(error);
                 this.setState({ error: error });
             });
-            
+
         // //Daily forcast is not working with this api 
-        
+
     }
 
     nightchecker = () => {
 
         // console.log(this.state.weatherData.sys.sunset);
         if (this.state.weatherData.sys.sunset > this.state.weatherData.dt && this.state.weatherData.sys.sunrise < this.state.weatherData.dt) {
-            this.setState({ night: false },()=>{this.iconStringHandler();})
+            this.setState({ night: false }, () => { this.iconStringHandler(); })
         }
         else {
-            this.setState({ night: true },()=>{this.iconStringHandler();})
+            this.setState({ night: true }, () => { this.iconStringHandler(); })
         }
     }
 
-    iconStringHandler=()=>{
-        var iconstring="PARTLY_CLOUDY"+(!this.state.night?"_DAY":"_NIGHT")
-        var backgroundstring={};
-        this.state.weatherIconManager.map(weatherIconManager=>{
-            if(weatherIconManager.Main===this.state.weatherData.weather.map(content => content.main)[0]){
+    iconStringHandler = () => {
+        var iconstring = "PARTLY_CLOUDY" + (!this.state.night ? "_DAY" : "_NIGHT")
+        var backgroundstring = {};
+        this.state.weatherIconManager.map(weatherIconManager => {
+            if (weatherIconManager.Main === this.state.weatherData.weather.map(content => content.main)[0]) {
                 // console.log(weatherIconManager.Main)
-                if(weatherIconManager.Main==="Clear"){
+                if (weatherIconManager.Main === "Clear") {
                     // console.log(String(weatherIconManager.Icon+(!this.state.night?"_DAY":"_NIGHT")))
-                    iconstring=weatherIconManager.Icon+(!this.state.night?"_DAY":"_NIGHT")
+                    iconstring = weatherIconManager.Icon + (!this.state.night ? "_DAY" : "_NIGHT")
                 }
-                else if(weatherIconManager.Main==="Clouds"){
+                else if (weatherIconManager.Main === "Clouds") {
                     console.log(this.state.weatherData.weather.map(content => content.description)[0]);
-                    if(this.state.weatherData.weather.map(content => content.description)[0]==="broken clouds"||
-                    this.state.weatherData.weather.map(content => content.description)[0]==="overcast clouds"){
-                        iconstring="CLOUDY"
+                    if (this.state.weatherData.weather.map(content => content.description)[0] === "broken clouds" ||
+                        this.state.weatherData.weather.map(content => content.description)[0] === "overcast clouds") {
+                        iconstring = "CLOUDY"
                     }
-                    else{
-                    // console.log(String(weatherIconManager.Icon+(!this.state.night?"_DAY":"_NIGHT")))
-                    iconstring=weatherIconManager.Icon+(!this.state.night?"_DAY":"_NIGHT")
+                    else {
+                        // console.log(String(weatherIconManager.Icon+(!this.state.night?"_DAY":"_NIGHT")))
+                        iconstring = weatherIconManager.Icon + (!this.state.night ? "_DAY" : "_NIGHT")
                     }
-                    
+
                 }
-                else{
-                    iconstring=weatherIconManager.Icon
+                else {
+                    iconstring = weatherIconManager.Icon
                 }
-                
-                backgroundstring=weatherIconManager.backgroundcolor
+
+                backgroundstring = weatherIconManager.backgroundcolor
             }
             return 0;
         })
         // console.log(backgroundstring)
         // console.log(iconstring)
-        this.setState({iconString:iconstring,backgroundString:backgroundstring})
-        
+        this.setState({ iconString: iconstring, backgroundString: backgroundstring })
+
     }
 
 
     render() {
         return (
-            <Aux>{this.state.weatherData.length===null?<div className={ClassNames.Loading}><h1>Loading...</h1></div>:
-            <div className={ClassNames.AppContainer} 
-            style={this.state.night ? {
-                background: "rgb(1, 41, 109)",
-                background: "linear-gradient(0deg, rgb(0, 88, 240) 0%, rgb(1, 41, 109) 100%)"
-            } :             {
-                background: `${this.state.backgroundString.background}`,
-                background: `${this.state.backgroundString.backgroundgradient}`
-            }}
-                >
-                
-                <TemperatureModal 
-                backgroundcolor={this.state.night ?"rgb(1, 41, 109)":this.state.backgroundString.background} 
-                iconString={this.state.iconString} 
-                weatherData={this.state.weatherData} 
-                night={this.state.night}/>
-                <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
-                <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} weatherDataSun={this.state.weatherData.sys} />
-                <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked} show={this.state.alldatafetched} />
-            </div>
-            }
+            <Aux>
+                {this.state.weatherData.length === null ?
+                    <div className={ClassNames.Loading}>
+                        <ReactAnimatedWeather
+                            icon="CLEAR_DAY"
+                            size={150}
+                            animate={true}
+                            color="#999"
+                        />
+                        <h1>Loading...</h1>
+                    </div> :
+                    <div className={ClassNames.AppContainer}
+                        style={this.state.night ? {
+                            background: "rgb(1, 41, 109)",
+                            background: "linear-gradient(0deg, rgb(0, 88, 240) 0%, rgb(1, 41, 109) 100%)"
+                        } : {
+                                background: `${this.state.backgroundString.background}`,
+                                background: `${this.state.backgroundString.backgroundgradient}`
+                            }}
+                    >
+
+                        <TemperatureModal
+                            backgroundcolor={this.state.night ? "rgb(1, 41, 109)" : this.state.backgroundString.background}
+                            iconString={this.state.iconString}
+                            weatherData={this.state.weatherData}
+                            night={this.state.night} />
+                        <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
+                        <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} weatherDataSun={this.state.weatherData.sys} />
+                        <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked} show={this.state.alldatafetched} />
+                    </div>
+                }
             </Aux>
         );
     }
