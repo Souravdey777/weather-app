@@ -78,9 +78,8 @@ class HourlyWeatherDetails extends Component {
                                 <OpenWeatherMapIcons
                                     iconid={this.state.ExtraDetails.weather.map(value => value.id)}
                                     night={this.state.ExtraDetails.sys.pod === "n" ? true : false}
-                                    size="50"
-                                />
-                                <br />
+                                    size="64"
+                                /><br/>
                                 <div><b>{this.state.ExtraDetails.weather.map(content => {
                                     return (content.description.charAt(0).toUpperCase() + content.description.slice(1))
                                 })}</b>
@@ -89,12 +88,15 @@ class HourlyWeatherDetails extends Component {
 
                             <div className={ClassNames.text}>
 
-                                <div className={ClassNames.temp}>
-                                    {(this.state.ExtraDetails.main.temp - 273.15).toFixed(2)}°C
-                                    <div ref={this.maxmixtemp} className={ClassNames.maxmixtemp} >
-                                        <div>↑{(this.state.ExtraDetails.main.temp_max - 273.15).toFixed(2)}°C</div>
-                                        <div>↓{(this.state.ExtraDetails.main.temp_min - 273.15).toFixed(2)}°C</div>
-                                    </div>
+
+                                <div >
+                                    Temp.: {(this.state.ExtraDetails.main.temp - 273.15).toFixed(2)}°C
+                                </div>
+                                <div>
+                                    Min Temp.: ↓{(this.state.ExtraDetails.main.temp_min - 273.15).toFixed(2)}°C
+                                </div>
+                                <div>
+                                Min Temp.: ↑{(this.state.ExtraDetails.main.temp_max - 273.15).toFixed(2)}°C
                                 </div>
                                 <div>
                                     Pressure: {this.state.ExtraDetails.main.pressure} hPa
