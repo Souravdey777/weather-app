@@ -229,12 +229,6 @@ class AppContainer extends Component {
             <Aux>
                 {this.state.weatherData.length === null ?
                     <div className={ClassNames.Loading}>
-                        <ReactAnimatedWeather
-                            icon="CLEAR_DAY"
-                            size={150}
-                            animate={true}
-                            color="#999"
-                        />
                         <h1>Loading...</h1>
                     </div> :
                     <div className={ClassNames.AppContainer}
