@@ -6,7 +6,6 @@ import CurrentWeatherDetails from '../../components/currentweatherdetails/curren
 import HourlyWeatherDetails from '../../components/hourlyweatherdetails/hourlyweatherdetails';
 import Footer from '../../components/footer/footer';
 import Aux from '../hoc/Aux';
-import ReactAnimatedWeather from 'react-animated-weather';
 
 class AppContainer extends Component {
     state = {
@@ -125,7 +124,6 @@ class AppContainer extends Component {
     }
 
 
-
     getlocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
@@ -138,6 +136,7 @@ class AppContainer extends Component {
         }
         this.gettime();
     }
+
 
     gettime() {
         var AmorPm = "am"
@@ -228,9 +227,7 @@ class AppContainer extends Component {
         return (
             <Aux>
                 {this.state.weatherData.length === null ?
-                    <div className={ClassNames.Loading}>
-                        <h1>Loading...</h1>
-                    </div> :
+                   null:
                     <div className={ClassNames.AppContainer}
                         style={this.state.night ? {
                             background: "rgb(1, 41, 109)",

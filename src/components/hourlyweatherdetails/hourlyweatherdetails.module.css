@@ -31,7 +31,6 @@
     font-size: 13px;
     padding: 30px 16px;
     line-height: 1.5;
-    transition-duration: 1s;
 }
 .eachSectionclicked{
     display: flex;
@@ -42,7 +41,6 @@
     font-size: 13px;
     padding: 30px 16px;
     line-height: 1.5;
-    transition-duration: 0.6s;
 }
 
 .ExtraDetails{

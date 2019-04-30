@@ -5,6 +5,8 @@
     flex-flow: column;
     align-items: center;
     width: 100%;
+    background: rgb(69, 139, 245);
+    background : linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)
 }
 .Loading{
     max-width: 768px;
