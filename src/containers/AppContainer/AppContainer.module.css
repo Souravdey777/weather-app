@@ -5,8 +5,6 @@
     flex-flow: column;
     align-items: center;
     width: 100%;
-    background: rgb(69, 139, 245);
-    background : linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%)
 }
 .Loading{
     max-width: 768px;
@@ -19,8 +17,10 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgb(152, 229, 252) ;
+    background : linear-gradient(0deg, rgb(152, 229, 252) 0%, rgb(69, 139, 245) 100%);
     color: #fff;
     font: bold;
     font-size: 24px;
+    transition-duration: 2s;
 }

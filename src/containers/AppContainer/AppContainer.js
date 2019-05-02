@@ -157,17 +157,17 @@ class AppContainer extends Component {
             axios.get(`https://api.openweathermap.org/data/2.5/forecast/hourly?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
         ]).then(axios.spread((response1, response2) => {
             const weatherData = response1.data;
-            console.log(weatherData);
+            //console.log(weatherData);
             this.setState({ weatherData: weatherData }, () => {
                 this.nightchecker();
                 this.setState({ alldatafetched: true });
             });
             const hourlyData = response2.data.list;
-            console.log(hourlyData);
+            //console.log(hourlyData);
             this.setState({ hourlyData: hourlyData });
         }))
             .catch(error => {
-                console.log(error);
+                //console.log(error);
                 this.setState({ error: error });
             });
 
@@ -197,7 +197,7 @@ class AppContainer extends Component {
                     iconstring = weatherIconManager.Icon + (!this.state.night ? "_DAY" : "_NIGHT")
                 }
                 else if (weatherIconManager.Main === "Clouds") {
-                    console.log(this.state.weatherData.weather.map(content => content.description)[0]);
+                    //console.log(this.state.weatherData.weather.map(content => content.description)[0]);
                     if (this.state.weatherData.weather.map(content => content.description)[0] === "broken clouds" ||
                         this.state.weatherData.weather.map(content => content.description)[0] === "overcast clouds") {
                         iconstring = "CLOUDY"
@@ -226,27 +226,33 @@ class AppContainer extends Component {
     render() {
         return (
             <Aux>
-                {this.state.weatherData.length === null ?
-                   null:
-                    <div className={ClassNames.AppContainer}
-                        style={this.state.night ? {
-                            background: "rgb(1, 41, 109)",
-                            background: "linear-gradient(0deg, rgb(0, 88, 240) 0%, rgb(1, 41, 109) 100%)"
-                        } : {
-                                background: `${this.state.backgroundString.background}`,
-                                background: `${this.state.backgroundString.backgroundgradient}`
-                            }}
-                    >
+                {this.state.error ? <div className={ClassNames.Loading}>
+                            <h1>Network Issue</h1>
+                        </div> :
+                    this.state.weatherData.length === null ?
+                        <div className={ClassNames.Loading}>
+                            <h1>Loading...</h1>
+                        </div> :
+                        <div className={ClassNames.AppContainer}
+                            style={this.state.night ? {
+                                background: "rgb(1, 41, 109)",
+                                background: "linear-gradient(0deg, rgb(0, 88, 240) 0%, rgb(1, 41, 109) 100%)"
 
-                        <TemperatureModal
-                            backgroundcolor={this.state.night ? "rgb(1, 41, 109)" : this.state.backgroundString.background}
-                            iconString={this.state.iconString}
-                            weatherData={this.state.weatherData}
-                            night={this.state.night} />
-                        <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
-                        <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} weatherDataSun={this.state.weatherData.sys} />
-                        <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked} show={this.state.alldatafetched} />
-                    </div>
+                            } : {
+                                    background: `${this.state.backgroundString.background}`,
+                                    background: `${this.state.backgroundString.backgroundgradient}`
+                                }}
+                        >
+
+                            <TemperatureModal
+                                backgroundcolor={this.state.night ? "rgb(1, 41, 109)" : this.state.backgroundString.background}
+                                iconString={this.state.iconString}
+                                weatherData={this.state.weatherData}
+                                night={this.state.night} />
+                            <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
+                            <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} weatherDataSun={this.state.weatherData.sys} />
+                            <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked} show={this.state.alldatafetched} />
+                        </div>
                 }
             </Aux>
         );
