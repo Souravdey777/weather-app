@@ -234,7 +234,7 @@ class AppContainer extends Component {
                             <h1>Loading...</h1>
                         </div> :
                         <div className={ClassNames.AppContainer}
-                            style={this.state.night ? {
+                            style={this.state.night &&  (this.state.iconString!=="SLEET" && this.state.iconString!=="RAIN")? {
                                 background: "rgb(1, 41, 109)",
                                 background: "linear-gradient(0deg, rgb(0, 88, 240) 0%, rgb(1, 41, 109) 100%)"
 
