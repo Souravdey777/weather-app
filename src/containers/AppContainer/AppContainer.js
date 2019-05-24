@@ -12,7 +12,7 @@ class AppContainer extends Component {
         datetime: null,
         latitude: null,
         longitude: null,
-        API_KEY: `9ed5e07cc11f0ef0a18b03f79dde4029`,
+        API_KEY: `8898f5d3206add41f7acafa9e05d800d`,
         weatherData: {
             base: "",
             clouds: {},
@@ -119,17 +119,18 @@ class AppContainer extends Component {
 
     updateButtonClicked = () => {
         this.getlocation();
+        if(!this.state.hourlyforcasterror){
         this.refs.HourlyWeatherDetails.clickedtofalse();
-        this.setState({ alldatafetched: false })
+        this.setState({ alldatafetched: false })}
     }
 
 
     getlocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                console.log(position.coords.latitude)
-                console.log(position.coords.longitude)
-                this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude }, () => {
+                console.log(position.coords.latitude);
+                console.log(position.coords.longitude);
+                this.setState({ latitude: position.coords.latitude.toFixed(2), longitude: position.coords.longitude.toFixed(2) }, () => {
                     this.getWeather();
                 })
             });
@@ -152,24 +153,31 @@ class AppContainer extends Component {
     }
 
     getWeather = () => {
-        axios.all([
-            axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`),
-            axios.get(`https://api.openweathermap.org/data/2.5/forecast/hourly?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
-        ]).then(axios.spread((response1, response2) => {
+
+
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${this.state.latitude}&lon=${this.state.longitude}&APPID=${this.state.API_KEY}`)
+        .then(response1 => {
             const weatherData = response1.data;
-            //console.log(weatherData);
+            console.log(weatherData);
             this.setState({ weatherData: weatherData }, () => {
                 this.nightchecker();
                 this.setState({ alldatafetched: true });
-            });
+            });}
+        ).catch(error => {
+            console.log(error);
+            this.setState({ error: error });
+        });
+
+        axios.get(`https://api.openweathermap.org/data/2.5/forecast/hourly?lat=${this.state.latitude}&lon=${this.state.longitude}&mode=json&APPID=${this.state.API_KEY}`)
+        .then(response2=>{
             const hourlyData = response2.data.list;
-            //console.log(hourlyData);
+            console.log(hourlyData);
             this.setState({ hourlyData: hourlyData });
-        }))
-            .catch(error => {
-                //console.log(error);
-                this.setState({ error: error });
-            });
+        })
+        .catch(error => {
+            console.log(error);
+            this.setState({ hourlyforcasterror: error });
+        });
 
         // //Daily forcast is not working with this api 
 
@@ -250,7 +258,9 @@ class AppContainer extends Component {
                                 weatherData={this.state.weatherData}
                                 night={this.state.night} />
                             <CurrentWeatherDetails CurrentweatherData={this.state.weatherData} />
-                            <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} weatherDataSun={this.state.weatherData.sys} />
+                            {this.state.hourlyforcasterror?null:
+                            <HourlyWeatherDetails ref="HourlyWeatherDetails" HourlyWeatherData={this.state.hourlyData} weatherDataSun={this.state.weatherData.sys} />}
+                            
                             <Footer datetime={this.state.datetime} updateButtonClicked={this.updateButtonClicked} show={this.state.alldatafetched} />
                         </div>
                 }
