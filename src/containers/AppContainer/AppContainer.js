@@ -168,7 +168,7 @@ class AppContainer extends Component {
             this.setState({ error: error });
         });
 
-        axios.get(`https://api.openweathermap.org/data/2.5/forecast/hourly?lat=${this.state.latitude}&lon=${this.state.longitude}&mode=json&APPID=${this.state.API_KEY}`)
+        axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${this.state.latitude}&lon=${this.state.longitude}&mode=json&APPID=${this.state.API_KEY}`)
         .then(response2=>{
             const hourlyData = response2.data.list;
             console.log(hourlyData);
