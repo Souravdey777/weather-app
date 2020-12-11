@@ -13,14 +13,11 @@ A Weather Application developed with Reactjs using OpenWeaterAPI. Its is a desig
 ### Demo
 
 **[Click here for demo](https://souravdey777.github.io/weather-app/)**
-<!--
 <a href="https://souravdey777.github.io/weather-app/" target="_blank">
 	<p align="center">
-  		<img src="./Screenshot.png" width="700" title="SUMMARIZE : THE NEWS APP" alt="SUMMARIZE : THE NEWS APP">
+  		<img src="./weatherCast.gif" width="300" title="WEATHER CAST : The Weather forcasting app" alt="WEATHER CAST">
 	</p>
 </a>
--->
-
 
 ### Features
 
@@ -28,9 +25,11 @@ A Weather Application developed with Reactjs using OpenWeaterAPI. Its is a desig
 	
 	• Offline Access from prefetched data
 	
-	• Responsive Design
+	• Interactive UI
 	
-	• News Filtering Options
+	• 3 days forcasting
+	
+	• location detection and fetching data automatically.
 
 
 ### Getting Started
