@@ -1,7 +1,6 @@
 ## WEATHER CAST : The Weather forcasting app
 <img width="80px" src="https://raw.githubusercontent.com/Souravdey777/weather-app/master/public/weathercast.png"/>
 
-[![HitCount](http://hits.dwyl.com/Souravdey777/weather-app.svg)](http://hits.dwyl.com/Souravdey777/weather-app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![GitHub version](https://d25lcipzij17d.cloudfront.net/badge.png?id=gh&v=1.0&style=flat)](https://badge.fury.io/gh/Souravdey777%2Fweather-app)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Souravdey777/weather-app/issues)
