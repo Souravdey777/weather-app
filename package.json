@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "add-to-homescreen": "^3.2.6",
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "country-list": "^2.1.0",
     "day-of-week": "^1.0.4",
     "gh-pages": "^2.0.1",
